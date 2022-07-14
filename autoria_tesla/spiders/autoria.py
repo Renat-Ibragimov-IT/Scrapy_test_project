@@ -7,6 +7,7 @@ class AutoriaSpider(scrapy.Spider):
     start_urls = ['https://auto.ria.com/uk/legkovie/tesla/']
 
     def parse(self, response, **kwargs):
+        """This function will collect and save the requested info from site"""
         for car in response.css('div.content'):
             item = CarItem()
             item['model'] = car.css('span::text').get().strip()
@@ -29,6 +30,7 @@ class AutoriaSpider(scrapy.Spider):
             yield scrapy.Request(next_page, callback=self.parse)
 
     def check_vin(self, vin_extract):
+        """This function will check vin code"""
         if not vin_extract:
             return f'Vin-code not specified'
         else:
