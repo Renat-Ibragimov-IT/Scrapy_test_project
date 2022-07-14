@@ -7,6 +7,7 @@ import scrapy
 
 
 class CarItem(scrapy.Item):
+    """This class described the "CarItem" object"""
     model = scrapy.Field()
     year = scrapy.Field()
     mileage = scrapy.Field()
